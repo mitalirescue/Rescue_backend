@@ -14,10 +14,22 @@ export const inquiryFunction = async (req, res) => {
     }
 
     try {
+        // const transporter = nodemailer.createTransport({
+        //     host: "smtp.hostinger.com",
+        //     port: 465,
+        //     secure: true,
+        //     auth: {
+        //         user: process.env.EMAIL_USER,
+        //         pass: process.env.EMAIL_PASS
+        //     },
+        //     tls: {
+        //         rejectUnauthorized: false
+        //     }
+        // });
         const transporter = nodemailer.createTransport({
             host: "smtp.hostinger.com",
-            port: 465,
-            secure: true,
+            port: 587,
+            secure: false, // IMPORTANT
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS
@@ -26,7 +38,7 @@ export const inquiryFunction = async (req, res) => {
                 rejectUnauthorized: false
             }
         });
-
+        
         const mailOptions = {
             from: `"${name}" <${process.env.EMAIL_USER}>`,
             replyTo: email,
