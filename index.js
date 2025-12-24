@@ -1,14 +1,25 @@
 import express from 'express';
+import cors from "cors";
 import dotenv from 'dotenv';
-
-dotenv.config()
 import inquiryRoute from './src/routes/inquiry.route.js';
 
-const port = process.env.PORT || 4000
 
-
+dotenv.config()
 
 const app = express()
+const port = process.env.PORT || 4000
+
+app.use(
+    cors({
+      origin: [
+        "http://localhost:3000",  // local dev
+        "https://www.rescueclick.com" // production
+      ],
+      methods: ["GET", "POST"],
+      credentials: true
+    })
+  );
+
 app.use(express.json());
 
 app.use ('/api/inquiry',inquiryRoute)
