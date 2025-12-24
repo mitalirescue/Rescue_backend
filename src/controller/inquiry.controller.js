@@ -34,9 +34,7 @@ export const inquiryFunction = async (req, res) => {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS
             },
-            tls: {
-                rejectUnauthorized: false
-            }
+
         });
         
         const mailOptions = {
